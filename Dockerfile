@@ -23,7 +23,7 @@ RUN dnf -y install rpm dnf-plugins-core \
       which \
       hostname \
       libyaml \
-      python3 \
+      python39 \
  && dnf clean all
 
 # Disable requiretty.
