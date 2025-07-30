@@ -3,6 +3,7 @@
 Systemd AlmaLinux Container Images for testing roles with Molecule and Podman.
 Supported AlmaLinux versions:
 
+* `10`
 * `9`
 * `8`
 
@@ -14,6 +15,7 @@ GitHub Package Registry.
 These tags are available. They are updated on changes to the `main` branch
 and are automatically rebuilt once a week.
 
+* `ghcr.io/hifis-net/almalinux-systemd:10`
 * `ghcr.io/hifis-net/almalinux-systemd:9`
 * `ghcr.io/hifis-net/almalinux-systemd:8`
 
@@ -23,10 +25,10 @@ and are automatically rebuilt once a week.
 * Run the container via Podman:
 
   ```bash
-  podman run -it --systemd=true --privileged ghcr.io/hifis-net/almalinux-systemd:9
+  podman run -it --systemd=true --privileged ghcr.io/hifis-net/almalinux-systemd:10
   ```
 
 ## Authors
 
-This project is maintained by [HIFIS])(https://www.hifis.net).
+This project is maintained by [HIFIS](https://www.hifis.net).
 It is built upon https://github.com/geerlingguy/docker-rockylinux9-ansible.
