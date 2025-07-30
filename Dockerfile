@@ -14,6 +14,7 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 # Install requirements.
+ARG VERSION
 RUN dnf -y install rpm dnf-plugins-core \
  && dnf -y update \
  && dnf -y install \
@@ -23,7 +24,13 @@ RUN dnf -y install rpm dnf-plugins-core \
       which \
       hostname \
       libyaml \
-      python39 \
+ && if [ "${VERSION}" = "8" ] || [ "${VERSION}" = "9" ]; then \
+      dnf -y install python3.12; \
+    elif [ "${VERSION}" = "10" ]; then \
+      dnf -y install python3; \
+    else \
+      echo "Unsupported VERSION: ${VERSION}" && exit 1; \
+    fi \
  && dnf clean all
 
 # Disable requiretty.
