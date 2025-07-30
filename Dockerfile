@@ -24,7 +24,9 @@ RUN dnf -y install rpm dnf-plugins-core \
       which \
       hostname \
       libyaml \
- && if [ "${VERSION}" = "8" ] || [ "${VERSION}" = "9" ]; then \
+ && if [ "${VERSION}" = "8" ]; then \
+      dnf -y install python39; \
+    elif [ "${VERSION}" = "9" ]; then \
       dnf -y install python3.12; \
     elif [ "${VERSION}" = "10" ]; then \
       dnf -y install python3; \
