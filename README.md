@@ -31,4 +31,4 @@ and are automatically rebuilt once a week.
 ## Authors
 
 This project is maintained by [HIFIS](https://www.hifis.net).
-It is built upon https://github.com/geerlingguy/docker-rockylinux9-ansible.
+It is built upon <https://github.com/geerlingguy/docker-rockylinux9-ansible>.
