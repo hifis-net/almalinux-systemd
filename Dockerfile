@@ -2,7 +2,9 @@ ARG VERSION=8
 
 FROM almalinux:${VERSION}
 LABEL maintainer="HIFIS (https://www.hifis.net)"
-ENV container=podman
+ENV container=podman \
+    ANSIBLE_USER=ansible \
+    SUDO_GROUP=wheel
 
 # Install systemd -- See https://hub.docker.com/_/centos/
 RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
@@ -38,5 +40,12 @@ RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
 
 # Workaround to prevent "sudo: PAM account management error" because of non-readable shadows file
 RUN chmod 0640 /etc/shadow
+
+# Create non-root user with sudo access
+RUN set -xe \
+    && groupadd -r ${ANSIBLE_USER} \
+    && useradd -m -g ${ANSIBLE_USER} ${ANSIBLE_USER} \
+    && usermod -aG ${SUDO_GROUP} ${ANSIBLE_USER} \
+    && sed -i "/^%${SUDO_GROUP}/s/ALL\$/NOPASSWD:ALL/g" /etc/sudoers
 
 CMD ["/usr/lib/systemd/systemd"]
