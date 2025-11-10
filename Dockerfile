@@ -36,4 +36,7 @@ RUN dnf -y install rpm dnf-plugins-core \
 # Disable requiretty.
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
 
+# Workaround to prevent "sudo: PAM account management error" because of non-readable shadows file
+RUN chmod 0640 /etc/shadow
+
 CMD ["/usr/lib/systemd/systemd"]
