@@ -26,10 +26,13 @@ RUN dnf -y install rpm dnf-plugins-core \
       which \
       hostname \
       libyaml \
+      gcc \
+      libffi-devel \
+      openssl-devel \
  && if [ "${VERSION}" = "8" ] || [ "${VERSION}" = "9" ]; then \
-      dnf -y install python3.12; \
+      dnf -y install python3.12 python3.12-devel python3.12-pip; \
     elif [ "${VERSION}" = "10" ]; then \
-      dnf -y install python3; \
+      dnf -y install python3 python3-devel python3-pip; \
     else \
       echo "Unsupported VERSION: ${VERSION}" && exit 1; \
     fi \
